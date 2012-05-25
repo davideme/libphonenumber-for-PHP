@@ -39,6 +39,7 @@ return array (
           (?:
             3(?:
               [23469]\\d|
+              5[35]|
               77|
               8[348]
             )\\d|
@@ -92,7 +93,6 @@ return array (
   'id' => 'BH',
   'countryCode' => 973,
   'internationalPrefix' => '00',
-  'preferredInternationalPrefix' => '',
   'sameMobileAndFixedLinePattern' => false,
   'numberFormat' => 
   array (

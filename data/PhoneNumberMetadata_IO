@@ -45,7 +45,6 @@ return array (
   'id' => 'IO',
   'countryCode' => 246,
   'internationalPrefix' => '00',
-  'preferredInternationalPrefix' => '',
   'sameMobileAndFixedLinePattern' => false,
   'numberFormat' => 
   array (
