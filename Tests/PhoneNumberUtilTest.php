@@ -880,6 +880,32 @@ class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 			$this->phoneUtil->getNumberType($premiumRateNumber));
 	}
 
+	public function testIsTollFree() {
+		$tollFreeNumber = new PhoneNumber();
+
+		$tollFreeNumber->setCountryCode(1)->setNationalNumber(8881234567);
+		$this->assertEquals(PhoneNumberType::TOLL_FREE,
+			$this->phoneUtil->getNumberType($tollFreeNumber));
+
+		$tollFreeNumber->clear();
+		$tollFreeNumber->setCountryCode(39)->setNationalNumber(803123);
+		$this->assertEquals(PhoneNumberType::TOLL_FREE,
+			$this->phoneUtil->getNumberType($tollFreeNumber));
+
+		$tollFreeNumber->clear();
+		$tollFreeNumber->setCountryCode(44)->setNationalNumber(8012345678);
+		$this->assertEquals(PhoneNumberType::TOLL_FREE,
+			$this->phoneUtil->getNumberType($tollFreeNumber));
+
+		$tollFreeNumber->clear();
+		$tollFreeNumber->setCountryCode(49)->setNationalNumber(8001234567);
+		$this->assertEquals(PhoneNumberType::TOLL_FREE,
+			$this->phoneUtil->getNumberType($tollFreeNumber));
+
+		$this->assertEquals(PhoneNumberType::TOLL_FREE,
+			$this->phoneUtil->getNumberType(self::$internationalTollFree));
+	}
+
 	/**
 	 * 
 	 */
