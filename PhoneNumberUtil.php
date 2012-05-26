@@ -5,6 +5,7 @@ namespace com\google\i18n\phonenumbers;
 require_once dirname(__FILE__) . '/CountryCodeToRegionCodeMap.php';
 require_once dirname(__FILE__) . '/PhoneMetadata.php';
 require_once dirname(__FILE__) . '/NumberParseException.php';
+require_once dirname(__FILE__) . '/PhoneNumber.php';
 
 /**
  * INTERNATIONAL and NATIONAL formats are consistent with the definition in ITU-T Recommendation
