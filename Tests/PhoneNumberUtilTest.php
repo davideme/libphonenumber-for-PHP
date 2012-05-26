@@ -14,6 +14,7 @@ require_once dirname(__FILE__) . '/../CountryCodeToRegionCodeMapForTesting.php';
 class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 
 	private static $bsNumber = NULL;
+	private static $bsMobile = NULL;
 	private static $internationalTollFree = NULL;
 	private static $sgNumber = NULL;
 	private static $usShortByOneNumber = NULL;
@@ -54,6 +55,8 @@ class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 	private static function initializePhoneUtilForTesting() {
 		self::$bsNumber = new PhoneNumber();
 		self::$bsNumber->setCountryCode(1)->setNationalNumber(2423651234);
+		self::$bsMobile = new PhoneNumber();
+		self::$bsMobile->setCountryCode(1)->setNationalNumber(2423570000);
 		self::$internationalTollFree = new PhoneNumber();
 		self::$internationalTollFree->setCountryCode(800)->setNationalNumber(12345678);
 		self::$sgNumber = new PhoneNumber();
@@ -904,6 +907,17 @@ class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertEquals(PhoneNumberType::TOLL_FREE,
 			$this->phoneUtil->getNumberType(self::$internationalTollFree));
+	}
+
+	public function testIsMobile() {
+		$this->assertEquals(PhoneNumberType::MOBILE, $this->phoneUtil->getNumberType(self::$bsMobile));
+		$this->assertEquals(PhoneNumberType::MOBILE, $this->phoneUtil->getNumberType(self::$gbMobile));
+		$this->assertEquals(PhoneNumberType::MOBILE, $this->phoneUtil->getNumberType(self::$itMobile));
+		$this->assertEquals(PhoneNumberType::MOBILE, $this->phoneUtil->getNumberType(self::$arMobile));
+
+		$mobileNumber = new PhoneNumber();
+		$mobileNumber->setCountryCode(49)->setNationalNumber(15123456789);
+		$this->assertEquals(PhoneNumberType::MOBILE, $this->phoneUtil->getNumberType($mobileNumber));
 	}
 
 	/**
