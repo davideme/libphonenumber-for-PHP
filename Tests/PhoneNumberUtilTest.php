@@ -856,6 +856,30 @@ class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
+	public function testIsPremiumRate() {
+		$this->assertEquals(PhoneNumberType::PREMIUM_RATE, $this->phoneUtil->getNumberType(self::$usPremium));
+
+		$premiumRateNumber = new PhoneNumber();
+		$premiumRateNumber->setCountryCode(39)->setNationalNumber(892123);
+		$this->assertEquals(PhoneNumberType::PREMIUM_RATE,
+			$this->phoneUtil->getNumberType($premiumRateNumber));
+
+		$premiumRateNumber->clear();
+		$premiumRateNumber->setCountryCode(44)->setNationalNumber(9187654321);
+		$this->assertEquals(PhoneNumberType::PREMIUM_RATE,
+			$this->phoneUtil->getNumberType($premiumRateNumber));
+
+		$premiumRateNumber->clear();
+		$premiumRateNumber->setCountryCode(49)->setNationalNumber(9001654321);
+		$this->assertEquals(PhoneNumberType::PREMIUM_RATE,
+			$this->phoneUtil->getNumberType($premiumRateNumber));
+
+		$premiumRateNumber->clear();
+		$premiumRateNumber->setCountryCode(49)->setNationalNumber(90091234567);
+		$this->assertEquals(PhoneNumberType::PREMIUM_RATE,
+			$this->phoneUtil->getNumberType($premiumRateNumber));
+	}
+
 	/**
 	 * 
 	 */
