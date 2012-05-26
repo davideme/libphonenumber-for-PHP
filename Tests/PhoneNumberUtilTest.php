@@ -927,6 +927,15 @@ class PhoneNumberUtilTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(PhoneNumberType::FIXED_LINE, $this->phoneUtil->getNumberType(self::$deNumber));
 	}
 
+	public function testIsFixedLineAndMobile() {
+		$this->assertEquals(PhoneNumberType::FIXED_LINE_OR_MOBILE, $this->phoneUtil->getNumberType(self::$usNumber));
+
+		$fixedLineAndMobileNumber = new PhoneNumber();
+		$fixedLineAndMobileNumber->setCountryCode(54)->setNationalNumber(1987654321);
+		$this->assertEquals(PhoneNumberType::FIXED_LINE_OR_MOBILE,
+			$this->phoneUtil->getNumberType($fixedLineAndMobileNumber));
+	}
+
 	/**
 	 * 
 	 */
