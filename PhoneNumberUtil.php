@@ -2170,7 +2170,7 @@ class PhoneNumberUtil {
 
 	private function loadMetadataFromFile($filePrefix, $regionCode, $countryCallingCode) {
 		$isNonGeoRegion = self::REGION_CODE_FOR_NON_GEO_ENTITY === $regionCode;
-		$source = $isNonGeoRegion ? $filePrefix . "_" . $countryCallingCode : $filePrefix . "_" . $regionCode;
+		$source = $isNonGeoRegion ? $filePrefix . "_" . $countryCallingCode . '.php' : $filePrefix . "_" . $regionCode . '.php';
 		if (is_readable($source)) {
 			$data = include $source;
 			$metadata = new PhoneMetadata();
