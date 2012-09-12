@@ -4,13 +4,13 @@ return array (
   array (
     'NationalNumberPattern' => '[13]\\d{6,11}',
     'PossibleNumberPattern' => '\\d{7,12}',
-    'ExampleNumber' => '32123456',
+    'ExampleNumber' => '3451234567',
   ),
   'fixedLine' => 
   array (
     'NationalNumberPattern' => 'NA',
     'PossibleNumberPattern' => 'NA',
-    'ExampleNumber' => '32123456',
+    'ExampleNumber' => '3451234567',
   ),
   'mobile' => 
   array (
@@ -25,7 +25,7 @@ return array (
           )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{7,10}',
-    'ExampleNumber' => '32123456',
+    'ExampleNumber' => '3451234567',
   ),
   'tollFree' => 
   array (

@@ -31,7 +31,7 @@ return array (
               6\\d{2}|
               7(?:
                 [23]\\d|
-                7[69]|
+                7[69]
               )|
               9(?:
                 22|
@@ -371,7 +371,7 @@ return array (
       'leadingDigitsPatterns' => 
       array (
       ),
-      'nationalPrefixFormattingRule' => '8$1',
+      'nationalPrefixFormattingRule' => '8 $1',
       'domesticCarrierCodeFormattingRule' => '',
     ),
   ),
