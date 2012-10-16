@@ -232,8 +232,10 @@ class PhoneNumberUtil {
 		$this->currentFilePrefix = dirname(__FILE__) . '/data/' . $filePrefix;
 		foreach ($this->countryCallingCodeToRegionCodeMap as $regionCodes) {
 			$this->supportedRegions = array_merge($this->supportedRegions, $regionCodes);
-		}
-		unset($this->supportedRegions[array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions)]);
+		} 
+                $idx_region_code_non_geo_entity = array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions);
+                if (FALSE !== $idx_region_code_non_geo_entity)
+                unset($this->supportedRegions[array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions)]);		
 		$this->nanpaRegions = $this->countryCallingCodeToRegionCodeMap[self::NANPA_COUNTRY_CODE];
 	}
 
@@ -2172,7 +2174,7 @@ class PhoneNumberUtil {
 		$isNonGeoRegion = self::REGION_CODE_FOR_NON_GEO_ENTITY === $regionCode;
 		$source = $isNonGeoRegion ? $filePrefix . "_" . $countryCallingCode . '.php' : $filePrefix . "_" . $regionCode . '.php';
 		if (is_readable($source)) {
-			$data = include $source;
+			$data = include $source;                        
 			$metadata = new PhoneMetadata();
 			$metadata->fromArray($data);
 			if ($isNonGeoRegion) {
@@ -2273,8 +2275,16 @@ class PhoneNumberUtil {
 	}
 
 	private function isNumberMatchingDesc($nationalNumber, PhoneNumberDesc $numberDesc) {
+           
+		if (DIRECTORY_SEPARATOR == '\\'){
+            // For Windows
+                $possibleNumberPatternMatcher = preg_match('/^(' . str_replace(array("\n", "\r", ' '), '', $numberDesc->getPossibleNumberPattern()) . ')$/', $nationalNumber);
+                $nationalNumberPatternMatcher = preg_match('/^(' . str_replace(array("\n", "\r", ' '), '', $numberDesc->getNationalNumberPattern()) . ')$/', $nationalNumber);
+                }else{
+            // For Linux
 		$possibleNumberPatternMatcher = preg_match('/^(' . str_replace(array(PHP_EOL, ' '), '', $numberDesc->getPossibleNumberPattern()) . ')$/', $nationalNumber);
 		$nationalNumberPatternMatcher = preg_match('/^(' . str_replace(array(PHP_EOL, ' '), '', $numberDesc->getNationalNumberPattern()) . ')$/', $nationalNumber);
+                }
 		return $possibleNumberPatternMatcher && $nationalNumberPatternMatcher;
 	}
 
