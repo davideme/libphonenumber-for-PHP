@@ -8,7 +8,10 @@ return array (
             [0-8]\\d{4,12}|
             9(?:
               [0-37]\\d|
-              4[1-8]|
+              4(?:
+                [1-35-8]|
+                4\\d?
+              )|
               5\\d{1,2}|
               6[1-8]\\d?
             )\\d{2,7}
@@ -103,7 +106,7 @@ return array (
     0 => 
     array (
       'pattern' => '(\\d{2})(\\d{4,11})',
-      'format' => '$1/$2',
+      'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
         0 => '
@@ -118,7 +121,7 @@ return array (
     1 => 
     array (
       'pattern' => '(\\d{3})(\\d{3,11})',
-      'format' => '$1/$2',
+      'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
         0 => '
@@ -146,7 +149,7 @@ return array (
     2 => 
     array (
       'pattern' => '(\\d{4})(\\d{2,11})',
-      'format' => '$1/$2',
+      'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
         0 => '
@@ -240,7 +243,7 @@ return array (
     3 => 
     array (
       'pattern' => '(\\d{5})(\\d{1,10})',
-      'format' => '$1/$2',
+      'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
         0 => '3',
