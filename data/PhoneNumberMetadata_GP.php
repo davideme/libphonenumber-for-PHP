@@ -26,14 +26,14 @@ return array (
   array (
     'NationalNumberPattern' => '
           690(?:
-            00|
+            0[067]|
             1[1-9]|
             2[013-5]|
             [3-5]\\d|
             6[0-57-9]|
             7[1-6]|
             8[0-6]|
-            9[09]
+            9[013-9]            
           )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{9}',
