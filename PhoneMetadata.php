@@ -214,6 +214,18 @@ class PhoneMetadata {
 		return isset($this->generalDesc);
 	}
 
+        protected static function cleanPatternForRegexp($pattern) {
+                // Metadata files can include line-breaks and spaces in the NationalNumberPattern. 
+		// Sometimes also appear in leadingDigitsPatterns.  These spaces need to be stripped
+		// before the pattern can be used in regexps
+
+                // Do not use PHP_EOL in these replacements, because on Windows machines PHP_EOL is
+		// changed to "\r\n" even though the files may still use "\n" for EOL.  In general, want
+		// to remove any spaces from the pattern, regardless of current platform.
+
+		return str_replace(array("\n", "\r", "\t", ' '), '', $pattern);
+        }
+
 	/**
 	 *
 	 * @return PhoneNumberDesc
@@ -729,7 +741,12 @@ class PhoneNumberDesc {
 	}
 
 	public function getNationalNumberPattern() {
-		return $this->nationalNumberPattern_;
+	        if (!empty($cleanForRegexp)) {
+			return $this->cleanPatternForRegexp($this->nationalNumberPattern_);
+		}
+		else {
+                        return $this->nationalNumberPattern_;
+		}
 	}
 
 	public function setNationalNumberPattern($value) {
@@ -745,8 +762,13 @@ class PhoneNumberDesc {
 		return $this->hasPossibleNumberPattern;
 	}
 
-	public function getPossibleNumberPattern() {
-		return $this->possibleNumberPattern_;
+	public function getPossibleNumberPattern($cleanForRegexp=FALSE) {
+	        if (!empty($cleanForRegexp)) {
+			return $this->cleanPatternForRegexp($this->possibleNumberPattern_);
+		}
+		else {
+                        return $this->possibleNumberPattern_;
+		}
 	}
 
 	public function setPossibleNumberPattern($value) {
@@ -856,8 +878,13 @@ class NumberFormat {
 		return count($this->leadingDigitsPattern);
 	}
 
-	public function getLeadingDigitsPattern($index) {
-		return $this->leadingDigitsPattern[$index];
+	public function getLeadingDigitsPattern($index, $cleanForRegexp=FALSE) {
+		if (!empty($cleanForRegexp)) {
+			return $this->cleanPatternForRegexp($this->leadingDigitsPattern[$index]);
+		}
+		else {
+			return $this->leadingDigitsPattern[$index];
+		}
 	}
 
 	public function addLeadingDigitsPattern($value) {
