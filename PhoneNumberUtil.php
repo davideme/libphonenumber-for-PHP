@@ -164,9 +164,9 @@ class PhoneNumberUtil {
 			self::$instance = new PhoneNumberUtil();
 			self::$instance->countryCallingCodeToRegionCodeMap = $countryCallingCodeToRegionCodeMap;
 			self::$instance->init($baseFileLocation);
+			self::initCapturingExtnDigits();
 			self::initExtnPatterns();
 			self::initAsciiDigitMappings();
-			self::initCapturingExtnDigits();
 			self::initExtnPattern();
 			self::$PLUS_CHARS_PATTERN = "[" . self::PLUS_CHARS . "]+";
 			self::$SEPARATOR_PATTERN = "[" . self::VALID_PUNCTUATION . "]+";
