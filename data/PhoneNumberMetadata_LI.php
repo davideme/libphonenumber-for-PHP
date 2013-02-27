@@ -24,8 +24,7 @@ return array (
               7[0135-7]|
               8[048]|
               9[0269]
-            )|
-            870
+            )
           )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{7}',
@@ -39,8 +38,7 @@ return array (
             6(?:
               [01][0-4]|
               2[016-9]|
-              88|
-              92
+              88
             )|
             710
           )\\d{5}|
@@ -48,7 +46,7 @@ return array (
             36|
             4[25]|
             56|
-            [6-9]\\d
+            [7-9]\\d
           )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{7,9}',
@@ -70,12 +68,6 @@ return array (
   ),
   'premiumRate' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
-    'ExampleNumber' => '',
-  ),
-  'sharedCost' => 
-  array (
     'NationalNumberPattern' => '
           90(?:
             0(?:
@@ -94,6 +86,12 @@ return array (
         ',
     'PossibleNumberPattern' => '\\d{7}',
     'ExampleNumber' => '9002222',
+  ),
+  'sharedCost' => 
+  array (
+    'NationalNumberPattern' => 'NA',
+    'PossibleNumberPattern' => 'NA',
+    'ExampleNumber' => '',
   ),
   'noInternationalDialling' => 
   array (
@@ -117,7 +115,7 @@ return array (
       array (
         0 => '
             [23]|
-            7[3-9]|
+            7[3-57-9]|
             87
           ',
       ),
