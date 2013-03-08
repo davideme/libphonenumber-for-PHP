@@ -233,7 +233,13 @@ class PhoneNumberUtil {
 		foreach ($this->countryCallingCodeToRegionCodeMap as $regionCodes) {
 			$this->supportedRegions = array_merge($this->supportedRegions, $regionCodes);
 		}
-		unset($this->supportedRegions[array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions)]);
+
+		$nonGeoEntityIdx = array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions);
+		if($nonGeoEntityIdx !== false)
+		{
+			unset($this->supportedRegions[$nonGeoEntityIdx]);
+		}
+
 		$this->nanpaRegions = $this->countryCallingCodeToRegionCodeMap[self::NANPA_COUNTRY_CODE];
 	}
 
