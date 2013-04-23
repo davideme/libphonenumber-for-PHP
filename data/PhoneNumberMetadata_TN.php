@@ -11,7 +11,8 @@ return array (
     'NationalNumberPattern' => '
           (?:
             3[012]|
-            7\\d
+            7\\d|
+            81
           )\\d{6}
         ',
     'PossibleNumberPattern' => '\\d{8}',
@@ -36,7 +37,7 @@ return array (
   ),
   'premiumRate' => 
   array (
-    'NationalNumberPattern' => '8[0128]\\d{6}',
+    'NationalNumberPattern' => '8[028]\\d{6}',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '80123456',
   ),
