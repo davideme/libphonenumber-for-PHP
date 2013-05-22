@@ -30,18 +30,21 @@ return array (
           1(?:
             1(?:
               5[347]|
-              [6-8]\\d|
-              9\\d{1,2}
+              [6-9]\\d|
             )|
             [2-9][6-9]\\d
           )\\d{6}|
           (?:
-            [4689][1-9]|
             2[12478]|
             3[1-578]|
+            [4689][1-9]|
             5[13-5]|
             7[13-579]
-          )[6-9]\\d{7}
+          )[6-9]\\d{7}|
+          (?:
+            119\\d|
+            1[2-9]9[6-9]
+          )\\d{7}
         ',
     'PossibleNumberPattern' => '\\d{10,11}',
     'ExampleNumber' => '1161234567',
@@ -117,7 +120,7 @@ return array (
       'format' => '$1 $2-$3',
       'leadingDigitsPatterns' => 
       array (
-        0 => '119',
+        0 => '1[1-9]9',
       ),
       'nationalPrefixFormattingRule' => '($1)',
       'domesticCarrierCodeFormattingRule' => '0 $CC ($1)',
@@ -164,7 +167,7 @@ return array (
       'format' => '$1 $2-$3',
       'leadingDigitsPatterns' => 
       array (
-        0 => '119',
+        0 => '1[1-9]9',
       ),
     ),
     1 => 
