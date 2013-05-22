@@ -19,7 +19,7 @@ return array (
             0[0-4]|
             7[01]
           )\\d{5}|
-          [67][01]\\d{6}|
+          [67][0-2]\\d{6}|
           8[3-9]\\d{6}
         ',
     'PossibleNumberPattern' => '\\d{8}',
@@ -52,7 +52,7 @@ return array (
   'id' => 'CR',
   'countryCode' => 506,
   'internationalPrefix' => '00',
-  'nationalPrefixForParsing' => '(19(?:0[0-2468]|19|66|77))',
+  'nationalPrefixForParsing' => '(19(?:0[0-2468]|19|20|66|77))',
   'sameMobileAndFixedLinePattern' => false,
   'numberFormat' => 
   array (
