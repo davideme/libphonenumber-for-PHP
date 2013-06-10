@@ -2341,14 +2341,14 @@ class Matcher {
 	 * @return bool
 	 */
 	public function matches() {
-		return preg_match('/^(?:' . str_replace('/', '\/', $this->pattern) . ')$/', $this->subject, $this->groups, PREG_OFFSET_CAPTURE) > 0;
+		return preg_match('/^(?:' . str_replace('/', '\/', $this->pattern) . ')$/x', $this->subject, $this->groups, PREG_OFFSET_CAPTURE) > 0;
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function lookingAt() {
-		$this->fullPatternMatchesNumber = preg_match_all('/^(?:' . str_replace('/', '\/', $this->pattern) . ')/', $this->subject, $this->groups, PREG_OFFSET_CAPTURE);
+		$this->fullPatternMatchesNumber = preg_match_all('/^(?:' . str_replace('/', '\/', $this->pattern) . ')/x', $this->subject, $this->groups, PREG_OFFSET_CAPTURE);
 		return $this->fullPatternMatchesNumber > 0;
 	}
 
@@ -2356,7 +2356,7 @@ class Matcher {
 	 * @return bool
 	 */
 	public function find() {
-		return preg_match('/(?:' . str_replace('/', '\/', $this->pattern) . ')/', $this->subject, $this->groups, PREG_OFFSET_CAPTURE) > 0;
+		return preg_match('/(?:' . str_replace('/', '\/', $this->pattern) . ')/x', $this->subject, $this->groups, PREG_OFFSET_CAPTURE) > 0;
 	}
 
 
@@ -2380,11 +2380,11 @@ class Matcher {
 	}
 
 	public function replaceFirst($replacement) {
-		return preg_replace('/' . str_replace('/', '\/', $this->pattern) . '/', $replacement, $this->subject, 1);
+		return preg_replace('/' . str_replace('/', '\/', $this->pattern) . '/x', $replacement, $this->subject, 1);
 	}
 
 	public function replaceAll($replacement) {
-		return preg_replace('/' . str_replace('/', '\/', $this->pattern) . '/', $replacement, $this->subject);
+		return preg_replace('/' . str_replace('/', '\/', $this->pattern) . '/x', $replacement, $this->subject);
 	}
 
 	public function reset($input = "") {
