@@ -1916,6 +1916,10 @@ class PhoneNumberUtil {
 		foreach ($regionCodes as $regionCode) {
 			// If leadingDigits is present, use this. Otherwise, do full validation.
 			$metadata = $this->getMetadataForRegion($regionCode);
+			if (is_null($metadata))
+			{
+				continue;
+			}
 			if ($metadata->hasLeadingDigits()) {
 				$nbMatches = preg_match('/' . $metadata->getLeadingDigits() . '/', $nationalNumber, $matches, PREG_OFFSET_CAPTURE);
 				if ($nbMatches > 0 && $matches[0][1] === 0) {
