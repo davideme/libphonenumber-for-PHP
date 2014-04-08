@@ -233,7 +233,11 @@ class PhoneNumberUtil {
 		foreach ($this->countryCallingCodeToRegionCodeMap as $regionCodes) {
 			$this->supportedRegions = array_merge($this->supportedRegions, $regionCodes);
 		}
-		unset($this->supportedRegions[array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions)]);
+		
+		if (($key = array_search(self::REGION_CODE_FOR_NON_GEO_ENTITY, $this->supportedRegions)) !== false) {
+			array_splice($this->supportedRegions, $key, 1);
+		}
+		
 		$this->nanpaRegions = $this->countryCallingCodeToRegionCodeMap[self::NANPA_COUNTRY_CODE];
 	}
 
@@ -2273,8 +2277,8 @@ class PhoneNumberUtil {
 	}
 
 	private function isNumberMatchingDesc($nationalNumber, PhoneNumberDesc $numberDesc) {
-		$possibleNumberPatternMatcher = preg_match('/^(' . str_replace(array(PHP_EOL, ' '), '', $numberDesc->getPossibleNumberPattern()) . ')$/', $nationalNumber);
-		$nationalNumberPatternMatcher = preg_match('/^(' . str_replace(array(PHP_EOL, ' '), '', $numberDesc->getNationalNumberPattern()) . ')$/', $nationalNumber);
+		$possibleNumberPatternMatcher = preg_match('/^(' . preg_replace(array('#\v#', '# #'), '', $numberDesc->getPossibleNumberPattern()) . ')$/', $nationalNumber);
+		$nationalNumberPatternMatcher = preg_match('/^(' . preg_replace(array('#\v#', '# #'), '', $numberDesc->getNationalNumberPattern()) . ')$/', $nationalNumber);
 		return $possibleNumberPatternMatcher && $nationalNumberPatternMatcher;
 	}
 
